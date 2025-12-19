@@ -1,0 +1,9 @@
+{
+  "versions": [
+    {
+      "major": 25,
+      "minor": 1,
+      "channel": "stable"
+    }
+  ]
+}

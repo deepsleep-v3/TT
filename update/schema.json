@@ -4,29 +4,27 @@
     "type": "object",
     "properties": {
         "versions": {
+            "type": "array",
+          "items": {
             "type": "object",
             "properties": {
-                "version": {
-                    "type": "object",
-                    "properties": {
-                        "major": {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        "minor": {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        "channel": {
-                            "type": "string",
-                            "enum": ["stable", "beta", "alpha", "dev"]
-                        }
-                    },
-                    "required": ["major", "minor", "channel"],
-                    "additionalProperties": false
-                }
+              "major": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "minor": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "channel": {
+                "type": "string",
+                "enum": [ "stable", "beta", "alpha", "dev" ]
+              }
             },
+            "required": [ "major", "minor", "channel" ],
             "additionalProperties": false
+          },
+          "minLength": 1
         }
     },
     "required": ["versions"],
