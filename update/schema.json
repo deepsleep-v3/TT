@@ -19,8 +19,7 @@
                         },
                         "channel": {
                             "type": "string",
-                            "enum": ["stable", "beta", "alpha", "dev"],
-                            "minimum": 1
+                            "enum": ["stable", "beta", "alpha", "dev"]
                         }
                     },
                     "required": ["major", "minor", "channel"],
