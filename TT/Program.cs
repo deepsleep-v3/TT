@@ -275,6 +275,7 @@ namespace TT
 				}
 			};
 			Console.OutputEncoding = System.Text.Encoding.UTF8;
+			Console.Clear();
 			language_choice:
 			Console.Clear();
 			var choice = AnsiConsole.Prompt(
