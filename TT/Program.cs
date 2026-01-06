@@ -279,7 +279,7 @@ namespace TT
 			Console.Clear();
 			var choice = AnsiConsole.Prompt(
 				new SelectionPrompt<string>()
-					.Title("Select your [greenyellow]language[/] / 選擇你的[greenyellow]語言[/] / 請揀你嘅[greenyellow]語言[/]")
+					.Title("Select your [greenyellow]language[/] / 選擇你的[greenyellow]語言[/] / 請揀你嘅[greenyellow]語言[/] / 选择你的[greenyellow]语言[/]")
 					.AddChoices(new[] { "English", "繁體中文（臺灣）", "粵語（繁體）", "简体中文" })
 					.HighlightStyle("chartreuse1 bold")
 			);
