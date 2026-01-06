@@ -262,6 +262,16 @@ namespace TT
 						{ "select_difficulty", "請揀啱你嘅[greenyellow]練習難度[/]" },
 						{ "try_again", "係咪再試多次？" }
 					}
+				},
+                {
+					"zh-CN", new Dictionary<string, string>()
+					{
+						{ "generated_msg", "请输入文本: {0}" },
+						{ "challenge_successfully", "恭喜！你已成功完成包含 {0} 个字的练习！" },
+						{ "incorrect", "输入错误！请检查后再试。" },
+						{ "select_difficulty", "请选择你的[greenyellow]练习难度[/]" },
+						{ "try_again", "再来一[strikethrough dim]瓶[/]次？" }
+					}
 				}
 			};
 			Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -270,7 +280,7 @@ namespace TT
 			var choice = AnsiConsole.Prompt(
 				new SelectionPrompt<string>()
 					.Title("Select your [greenyellow]language[/] / 選擇你的[greenyellow]語言[/] / 請揀你嘅[greenyellow]語言[/]")
-					.AddChoices(new[] { "English", "繁體中文（臺灣）", "粵語（繁體）" })
+					.AddChoices(new[] { "English", "繁體中文（臺灣）", "粵語（繁體）", "简体中文" })
 					.HighlightStyle("chartreuse1 bold")
 			);
 			switch (choice)
@@ -283,6 +293,9 @@ namespace TT
 					break;
 				 case "粵語（繁體）":
 					PublicVariables.selectedCulture = "yue-Hant-HK";
+					break;
+				case "简体中文":
+					PublicVariables.selectedCulture = "zh-CN";
 					break;
 			}
 			while (true) {
