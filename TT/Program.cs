@@ -14,181 +14,21 @@ namespace TT
 		public static Dictionary<string, Dictionary<string, string>> i18nStringsTable;
 		public static string selectedCulture = "en-US";
 	}
-	class EasyPractice : PracticeGenerator
-	{
-		public EasyPractice() : base()
-		{
-			charCount = 21;
-		}
 
-		public override void Invoke()
-		{
-			string randomString = RandomStringConstructor();
-			while (true)
-			{
-				var start = DateTime.Now;
-				Console.WriteLine(string.Format(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["generated_msg"], randomString));
-				string repeat = Console.ReadLine() ?? "";
-				if (repeat == randomString)
-				{
-					var end = DateTime.Now;
-					var PCTT =
-						((DateTime.Now - start).Days * 24 * 60 * 60 + (DateTime.Now - start).Hours * 60 * 60 +
-						(DateTime.Now - start).Minutes * 60 + (DateTime.Now - start).TotalSeconds) / charCount;
-					Console.WriteLine(string.Format(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["challenge_successfully"], charCount));
-					Console.WriteLine("Total: " +
-						(DateTime.Now - start).ToString("g", new CultureInfo(PublicVariables.selectedCulture)) +
-						", Per Character Time Taken (in seconds): " + PCTT);
-					var saveComfirmPrompt = new ConfirmationPrompt("Save this?");
-					saveComfirmPrompt.ChoicesStyle = Style.Parse("chartreuse2 bold");
-					saveComfirmPrompt.DefaultValueStyle = Style.Parse("mediumspringgreen bold");
-					bool saveComfirm = AnsiConsole.Prompt(saveComfirmPrompt);
-					if (saveComfirm) SaveGame(randomString, end - start, start);
-                    return;
-                }
-				else
-				{
-					Console.WriteLine(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["incorrect"]);
-					Console.WriteLine("Press any key to continue...");
-					Console.ReadKey(intercept: true);
-					Console.Clear();
-					continue;
-				}
-			}
-		}
-	}
-	class MiddlePractice : PracticeGenerator
-	{
-		public MiddlePractice() : base()
-		{
-			charCount = 62;
-		}
+    public enum PracticeDiffculty
+    {
+		Easy = 26,
+		Medium = 62,
+		Hard = 100,
+		VeryHard = 125
+    }
 
-		public override void Invoke()
-		{
-			string randomString = RandomStringConstructor();
-			while (true)
-			{
-				var start = DateTime.Now;
-				Console.WriteLine(string.Format(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["generated_msg"], randomString));
-				string repeat = Console.ReadLine() ?? "";
-				if (repeat == randomString)
-				{
-					var end = DateTime.Now;
-					var PCTT =
-						((DateTime.Now - start).Days * 24 * 60 * 60 + (DateTime.Now - start).Hours * 60 * 60 +
-						(DateTime.Now - start).Minutes * 60 + (DateTime.Now - start).TotalSeconds) / charCount;
-					Console.WriteLine(string.Format(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["challenge_successfully"], charCount));
-					Console.WriteLine("Total: " +
-						(DateTime.Now - start).ToString("g", new CultureInfo(PublicVariables.selectedCulture)) +
-						", Per Character Time Taken (in seconds): " + PCTT);
-					var saveComfirmPrompt = new ConfirmationPrompt("Save this?");
-					saveComfirmPrompt.ChoicesStyle = Style.Parse("chartreuse2 bold");
-					saveComfirmPrompt.DefaultValueStyle = Style.Parse("mediumspringgreen bold");
-					bool saveComfirm = AnsiConsole.Prompt(saveComfirmPrompt);
-					if (saveComfirm) SaveGame(randomString, end - start, start);
-                    return;
-                }
-				else
-				{
-					Console.WriteLine(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["incorrect"]);
-					Console.WriteLine("Press any key to continue...");
-					Console.ReadKey(intercept: true);
-					Console.Clear();
-					continue;
-				}
-			}
-		}
-	}
-	class HardPractice : PracticeGenerator
+    internal class PracticeGenerator
 	{
-		public HardPractice() : base()
-		{
-			charCount = 100;
-		}
-
-		public override void Invoke()
-		{
-			string randomString = RandomStringConstructor();
-			while (true)
-			{
-				var start = DateTime.Now;
-				Console.WriteLine(string.Format(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["generated_msg"], randomString));
-				string repeat = Console.ReadLine() ?? "";
-				if (repeat == randomString)
-				{
-					var end = DateTime.Now;
-					var PCTT =
-						((DateTime.Now - start).Days * 24 * 60 * 60 + (DateTime.Now - start).Hours * 60 * 60 +
-						(DateTime.Now - start).Minutes * 60 + (DateTime.Now - start).TotalSeconds) / charCount;
-					Console.WriteLine(string.Format(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["challenge_successfully"], charCount));
-					Console.WriteLine("Total: " +
-						(DateTime.Now - start).ToString("g", new CultureInfo(PublicVariables.selectedCulture)) +
-						", Per Character Time Taken (in seconds): " + PCTT);
-					var saveComfirmPrompt = new ConfirmationPrompt("Save this?");
-					saveComfirmPrompt.ChoicesStyle = Style.Parse("chartreuse2 bold");
-					saveComfirmPrompt.DefaultValueStyle = Style.Parse("mediumspringgreen bold");
-					bool saveComfirm = AnsiConsole.Prompt(saveComfirmPrompt);
-					if (saveComfirm) SaveGame(randomString, end - start, start);
-                    return;
-                }
-				else
-				{
-					Console.WriteLine(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["incorrect"]);
-					Console.WriteLine("Press any key to continue...");
-					Console.ReadKey(intercept:true);
-					Console.Clear();
-					continue;
-				}
-			}
-		}
-	}
-	class VeryHardPractice : PracticeGenerator
-	{
-		public VeryHardPractice() : base()
-		{
-			charCount = 125;
-		}
-
-		public override void Invoke()
-		{
-			string randomString = RandomStringConstructor();
-			while (true)
-			{
-				var start = DateTime.Now;
-				Console.WriteLine(string.Format(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["generated_msg"], randomString));
-				string repeat = Console.ReadLine() ?? "";
-				if (repeat == randomString)
-				{
-					var end = DateTime.Now;
-					var PCTT =
-						((DateTime.Now - start).Days * 24 * 60 * 60 + (DateTime.Now - start).Hours * 60 * 60 +
-						(DateTime.Now - start).Minutes * 60 + (DateTime.Now - start).TotalSeconds) / charCount;
-					Console.WriteLine(string.Format(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["challenge_successfully"], charCount));
-					Console.WriteLine("Total: " +
-						(DateTime.Now - start).ToString("g", new CultureInfo(PublicVariables.selectedCulture)) +
-						", Per Character Time Taken (in seconds): " + PCTT);
-					var saveComfirmPrompt = new ConfirmationPrompt("Save this?");
-					saveComfirmPrompt.ChoicesStyle = Style.Parse("chartreuse2 bold");
-					saveComfirmPrompt.DefaultValueStyle = Style.Parse("mediumspringgreen bold");
-					bool saveComfirm = AnsiConsole.Prompt(saveComfirmPrompt);
-					if (saveComfirm) SaveGame(randomString, end - start, start);
-					return;
-				}
-				else
-				{
-					Console.WriteLine(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["incorrect"]);
-					Console.WriteLine("Press any key to continue...");
-					Console.ReadKey(intercept: true);
-					Console.Clear();
-					continue;
-				}
-			}
-		}
-	}
-	abstract class PracticeGenerator
-	{
-		public class GameSave {
+		public PracticeGenerator(PracticeDiffculty practiceDiffculty) {
+			charCount = (int)practiceDiffculty;
+        }
+        public class OnePractice {
 			public string GeneratedString { get; set; }
 			public TimeSpan TimeTaken { get; set; }
 			public YAMLDateTimeWithTimeZone CreateDateAndTime { get; set; }
@@ -199,26 +39,61 @@ namespace TT
 			public string TimeZone { get; set; }
         }
         Random _randomAlg = new();
-		protected int charCount = 62;
-		protected string _charList = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
-		protected string RandomStringConstructor()
+		protected static string _charList = "~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./";
+        protected int charCount = _charList.Length;
+        protected string RandomStringConstructor()
 		{
 			char[] resultCharSequence = new char[charCount];
 			for (int i = 0; i < charCount; i++)
 			{
-				resultCharSequence[i] = _charList[_randomAlg.Next(62)];
+				resultCharSequence[i] = _charList[_randomAlg.Next(_charList.Length)];
 			}
 			return new string(resultCharSequence);
 		}
-		public abstract void Invoke();
-		public void SaveGame(string generatedString, TimeSpan timeTaken, DateTime createdTime) { 
-			GameSave save = new GameSave()
+        public void Invoke()
+        {
+            string randomString = RandomStringConstructor();
+            while (true)
+            {
+                var start = DateTime.Now;
+                Console.WriteLine(string.Format(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["generated_msg"], randomString));
+                string repeat = Console.ReadLine() ?? "";
+                if (repeat == randomString)
+                {
+                    var end = DateTime.Now;
+                    TimeSpan timeSpan = (DateTime.Now - start);
+                    var PCTT =
+                        (timeSpan.Days * 24 * 60 * 60 + timeSpan.Hours * 60 * 60 +
+                        timeSpan.Minutes * 60 + timeSpan.TotalSeconds) / charCount;
+                    Console.WriteLine(string.Format(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["challenge_successfully"], charCount));
+                    Console.WriteLine("Total: " +
+                        timeSpan.ToString("g", new CultureInfo(PublicVariables.selectedCulture)) +
+                        ", Per Character Time Taken (in seconds): " + PCTT);
+                    var saveComfirmPrompt = new ConfirmationPrompt("Save this?");
+                    saveComfirmPrompt.ChoicesStyle = Style.Parse("chartreuse2 bold");
+                    saveComfirmPrompt.DefaultValueStyle = Style.Parse("mediumspringgreen bold");
+                    bool saveComfirm = AnsiConsole.Prompt(saveComfirmPrompt);
+                    if (saveComfirm) SaveGame(randomString, end - start, start);
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine(PublicVariables.i18nStringsTable[PublicVariables.selectedCulture]["incorrect"]);
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey(intercept: true);
+                    Console.Clear();
+                    continue;
+                }
+            }
+        }
+        public void SaveGame(string generatedString, TimeSpan timeTaken, DateTime createdTime) { 
+			OnePractice save = new OnePractice()
 			{
 				GeneratedString = generatedString,
 				TimeTaken = timeTaken,
 				CreateDateAndTime = new YAMLDateTimeWithTimeZone()
 				{
-					DateAndTime = createdTime.ToString("yyyy-MM-ddTHH:mm:ss.fffffff"),
+					DateAndTime = createdTime.ToString("yyyy-MM-ddTHH:mm:ss.fff"),
 					TimeZone = TimeZoneConverter.TZConvert.WindowsToIana(TimeZoneInfo.Local.Id)
                 }
             };
@@ -226,7 +101,7 @@ namespace TT
 				.WithNamingConvention(HyphenatedNamingConvention.Instance)
 				.Build();
 			var yaml = yamlSerializer.Serialize(save);
-			File.WriteAllText($"{DateTime.Now:yyyyMMdd_HHmmss}-{TimeZoneConverter.TZConvert.WindowsToIana(TimeZoneInfo.Local.Id).Replace("/","_")}.ttsave", yaml);
+			File.WriteAllText($"{DateTime.Now:yyyyMMdd_HHmmss`fff}-{TimeZoneConverter.TZConvert.WindowsToIana(TimeZoneInfo.Local.Id).Replace("/","_")}.ttsave", yaml);
 
 		}
 	}
@@ -282,7 +157,7 @@ namespace TT
 				new SelectionPrompt<string>()
 					.Title("Select your [greenyellow]language[/] / 選擇你的[greenyellow]語言[/] / 請揀你嘅[greenyellow]語言[/] / 选择你的[greenyellow]语言[/]")
 					.AddChoices(new[] { "English", "繁體中文（臺灣）", "粵語（繁體）", "简体中文" })
-					.HighlightStyle("chartreuse1 bold")
+					.HighlightStyle("Chartreuse3 on DarkOliveGreen1_1 bold")
 			);
 			switch (choice)
 			{
@@ -312,7 +187,7 @@ namespace TT
 				switch (choice)
 				{
 					case "Easy (26 alphabets and number)":
-						practice = new EasyPractice();
+						practice = new PracticeGenerator(PracticeDiffculty.Easy);
 						AnsiConsole.MarkupLine("[bold greenyellow]You will into a easy practice: 3 seconds[/]");
 						Thread.Sleep(1000);
 						Console.Clear();
@@ -325,20 +200,20 @@ namespace TT
 						practice.Invoke();
 						break;
 					case "Medium (62 alphabets and number)":
-						practice = new MiddlePractice();
+						practice = new PracticeGenerator(PracticeDiffculty.Medium);
 						AnsiConsole.MarkupLine("[bold greenyellow]You will into a medium practice: 3 seconds[/]");
 						Thread.Sleep(1000);
 						Console.Clear();
 						AnsiConsole.MarkupLine("[bold yellow]You will into a medium practice: 2 seconds[/]");
 						Thread.Sleep(1000);
 						Console.Clear();
-						AnsiConsole.MarkupLine("[bold orange1]You will into a medium practice: 1 seconds!![/]");
+						AnsiConsole.MarkupLine("[bold orange1]You will into a medium practice: 1 seconds[/]");
 						Thread.Sleep(1000);
 						Console.Clear();
 						practice.Invoke();
 						break;
 					case "Hard (100 alphabets and number)":
-						practice = new HardPractice();
+						practice = new PracticeGenerator(PracticeDiffculty.Hard);
 						AnsiConsole.MarkupLine("[bold greenyellow]You will into a hard practice: 3 seconds[/]");
 						Thread.Sleep(1000);
 						Console.Clear();
@@ -348,8 +223,8 @@ namespace TT
 						AnsiConsole.MarkupLine("[bold orange1]You will into a hard practice: 1 seconds!![/]");
 						break;
 					case "Very Hard (125 alphabets and number)":
-						practice = new VeryHardPractice();
-						AnsiConsole.MarkupLine("[bold greenyellow]You will into a very hard practice: 3 seconds[/]");
+						practice = new PracticeGenerator(PracticeDiffculty.VeryHard);
+                        AnsiConsole.MarkupLine("[bold greenyellow]You will into a very hard practice: 3 seconds[/]");
 						Thread.Sleep(1000);
 						Console.Clear();
 						AnsiConsole.MarkupLine("[bold yellow]You will into a very hard practice: 2 seconds[/]");
@@ -365,7 +240,7 @@ namespace TT
 						var gotoPart = AnsiConsole.Prompt(
 							new SelectionPrompt<string>()
 							.Title("Please select a part to run")
-							.AddChoices(new[] { "Language Choose", "Practice Difficulty Choose", "Debug mode (There)", "\"Try Again\" Confirmation" })
+							.AddChoices(new[] { "Language Choose", "Practice Difficulty Choose", "Debug mode (There)", "\"Try Again\" Confirmation", "Traslation Table of Current Language" })
 							.HighlightStyle("chartreuse1 bold"));
 						Console.Clear();
 						switch (gotoPart)
@@ -374,11 +249,22 @@ namespace TT
 								goto language_choice;
 							case "Practice Difficulty Choose":
 								goto practice_diffculty;
-							 case "Debug mode (There)":
+							case "Debug mode (There)":
 								goto debug;
-							  case "\"Try Again\" Confirmation":
+							case "\"Try Again\" Confirmation":
 								goto try_again_confirmation;
-						}
+							case "Traslation Table of Current Language":
+								Table table = new Table();
+								table.Border = TableBorder.Square;
+								table.AddColumn("Key");
+								table.AddColumn("Value");
+                                foreach (var item in PublicVariables.i18nStringsTable[PublicVariables.selectedCulture])
+                                {
+									table.AddRow(item.Key, item.Value);
+                                }
+								AnsiConsole.Write(table);
+                                break;
+                        }
 						break;
 				}
 				try_again_confirmation:
